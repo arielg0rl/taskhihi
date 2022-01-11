@@ -1,6 +1,6 @@
 {
-  "homepage": "https://arielg0rl.github.io/react-ts-template",
-  "name": "my-app",
+  "homepage": ".",
+  "name": "taskhihi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
