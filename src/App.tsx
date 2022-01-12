@@ -2,22 +2,23 @@ import './App.scss';
 import React, { useState, useEffect } from 'react';
 import { NewComment } from './components/NewComment';
 import { CommentsList } from './components/CommentsList';
-import { getComments } from './api';
+import { createStore } from 'redux';
+import { CommentType } from './components/NewComment';
+import { useDispatch, useSelector } from 'react-redux';
+import store, { RootState } from './store/store';
 
 function App() {
-  const [comments, setComments] = useState([]);
+  const dispatch = useDispatch();
+  const addComment = (comment: CommentType) => {
+    dispatch({ type: 'ADD_COMMENT', title: comment.title, comment: comment.comment })
+  }
 
-  useEffect(() => {
-    getComments().then(loadedComments => setComments(loadedComments))
-  }, []);
-
-
+  const comments = useSelector((state: RootState) => state.comments);
 
   return (
     <div className="App">
       <div className="App-wrapper">
-        <div>Home</div>
-        <NewComment />
+        <NewComment addComment={addComment} />
         <CommentsList comments={comments} />
       </div>
 

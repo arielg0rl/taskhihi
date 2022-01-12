@@ -15,7 +15,7 @@ body {
 
   &-wrapper {
     display: grid;
-    max-width: 500px;
+    width: 400px;
   }
 }
 
@@ -26,23 +26,41 @@ body {
   flex-direction: column;
   justify-content: space-between;
   background-color: white;
+  margin-top: 20px;
 
-  &__buttons {
-    display: flex;
-    justify-content: space-evenly;
-    padding-top: 8px;
+  &__button {
+    display: grid;
+    margin: 0 auto;
+    margin-top: 8px;
+    background-color: transparent;
+    border: 0.5px solid grey;
+    color: grey;
   }
 
   &__input {
     border: 1px solid white;
     outline-style: none;
+    background-color: pink;
+    height: 40px;
+    padding: 10px;
   }
 }
+
+.newTitle__input {
+  border: 1px solid white;
+  outline-style: none;
+  background-color: pink;
+  height: 40px;
+  padding: 10px;
+}
+
 
 .Comment {
   background-color: white;
   padding: 10px;
   margin-bottom: 10px;
+  font-size: 14px;
+  color: rgb(77, 75, 75);
 
   &__body {
     margin: 10px;
@@ -50,5 +68,7 @@ body {
 
   &__like-button {
     width: 15px;
+    opacity: 50%;
+    margin-top: 6px;
   }
 }

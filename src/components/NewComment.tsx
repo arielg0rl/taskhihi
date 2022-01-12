@@ -1,32 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { postNewComment } from '../api';
+import { createStore } from 'redux'
 
-export const NewComment = ({ }) => {
+export interface CommentType {
+    title: string,
+    comment: string,
+}
+
+export interface Props {
+    addComment: (comment: CommentType) => void;
+}
+
+export const NewComment: React.FC<Props> = ({ addComment }) => {
+    const [newTitle, setNewTitle] = useState('')
     const [newComment, setNewComment] = useState('');
-    const [commentAdded, setCommentAdded] = useState(false);
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleCommentInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setNewComment(event.target.value);
+    }
+
+    const handleTitleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNewTitle(event.target.value);
     }
 
     const handleSending = (event: React.FormEvent<EventTarget>) => {
         event.preventDefault();
-
-        postNewComment(newComment).then(() => setCommentAdded(true))
+        addComment({ title: newTitle, comment: newComment })
+        setNewTitle('');
+        setNewComment('');
     }
 
 
     return (
         <div className="newComment">
             <input
+                type="text"
+                placeholder="title here"
+                className="newTitle__input"
+                value={newTitle}
+                onChange={handleTitleInputChange}
+            />
+            <input
                 placeholder="What's up?"
                 className="newComment__input"
-                type="text" value={newComment}
-                onChange={handleInputChange}
+                type="text"
+                value={newComment}
+                onChange={handleCommentInputChange}
             />
-            <div className="newComment__buttons">
-                <button>Add Media</button>
-                <button type="submit" onClick={handleSending}>send</button>
+            <div>
+                <button className="newComment__button" type="submit" onClick={handleSending}>send</button>
             </div>
         </div>
     )

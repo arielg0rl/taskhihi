@@ -3,10 +3,8 @@ import heart from '../assets/heart-regular.svg';
 import heartSolid from '../assets/heart-solid.svg';
 
 export interface CommentType {
-    "userId": number,
-    "id": number,
     "title": string,
-    "body": string,
+    "text": string,
 }
 
 interface Props {
@@ -15,6 +13,7 @@ interface Props {
 
 export const Comment: React.FC<Props> = ({ comment }) => {
     const [liked, setLiked] = useState(false);
+    console.log(comment)
 
     const handleLike = () => {
         setLiked(!liked);
@@ -22,8 +21,8 @@ export const Comment: React.FC<Props> = ({ comment }) => {
 
     return (
         <div className="Comment">
-            <div>{comment.title}</div>
-            <div className="Comment__body">{comment.body}</div>
+            <div className="Comment__title">{comment.title}</div>
+            <div className="Comment__body">{comment.text}</div>
             <div className="Comment__like-button-wrapper" onClick={handleLike}>
                 {
                     liked ?
